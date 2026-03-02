@@ -34,6 +34,36 @@ resource "aws_sqs_queue" "demo" {
   name = "tf-localstack-demo-queue"
 }
 
+resource "aws_sqs_queue" "queue_a" {
+  name = "queue-a"
+}
+
+resource "aws_sqs_queue" "queue_b" {
+  name = "queue-b"
+}
+
+resource "aws_dynamodb_table" "backend_a_events" {
+  name         = "backend_a_events"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
+resource "aws_dynamodb_table" "backend_b_events" {
+  name         = "backend_b_events"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
 resource "aws_dynamodb_table" "demo" {
   name         = "tf-localstack-demo-table"
   billing_mode = "PAY_PER_REQUEST"
@@ -43,4 +73,20 @@ resource "aws_dynamodb_table" "demo" {
     name = "pk"
     type = "S"
   }
+}
+
+output "queue_a_url" {
+  value = aws_sqs_queue.queue_a.url
+}
+
+output "queue_b_url" {
+  value = aws_sqs_queue.queue_b.url
+}
+
+output "backend_a_events_table_name" {
+  value = aws_dynamodb_table.backend_a_events.name
+}
+
+output "backend_b_events_table_name" {
+  value = aws_dynamodb_table.backend_b_events.name
 }

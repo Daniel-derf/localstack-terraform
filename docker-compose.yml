@@ -3,11 +3,11 @@ services:
     image: localstack/localstack:latest
     container_name: localstack
     ports:
-      - "4566:4566" # LocalStack edge port (all services)
+      - "4566:4566"
     environment:
-      - SERVICES=s3,sqs,dynamodb,lambda,iam,sts,logs,events, ec2
+      - SERVICES=s3,sqs,dynamodb,lambda,iam,sts,logs,events
       - DEBUG=0
       - AWS_DEFAULT_REGION=us-east-1
     volumes:
       - ./localstack-data:/var/lib/localstack
-      - /var/run/docker.sock:/var/run/docker.sock # needed for Lambda docker executor
+      - /var/run/docker.sock:/var/run/docker.sock

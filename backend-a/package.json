@@ -1,0 +1,15 @@
+{
+  "name": "backend-a",
+  "version": "1.0.0",
+  "description": "Node backend that consumes queue-a and sends to queue-b, uses table backend_a_events",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.700.0",
+    "@aws-sdk/client-sqs": "^3.700.0",
+    "express": "^4.21.0"
+  }
+}

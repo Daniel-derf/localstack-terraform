@@ -1,2 +1,4 @@
 .terraform
 localstack-data
+.env
+node_modules
